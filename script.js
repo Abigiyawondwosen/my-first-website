@@ -1,70 +1,90 @@
-const darkBtn = document.getElementById("darkModeBtn");
+document.addEventListener("DOMContentLoaded", () => {
+  const themeToggleBtn = document.getElementById("themeToggleBtn");
+  const greetBtn = document.getElementById("greetBtn");
+  const form = document.getElementById("contactForm");
+  const messagesList = document.getElementById("messagesList");
+  const revealSections = document.querySelectorAll(".reveal");
 
-darkBtn.addEventListener("click", function () {
-    document.body.classList.toggle("dark-mode");
-});
-// Show welcome message
-alert("Welcome to Abig's website!");
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("theme-dark");
+  }
 
-// Greeting button
-const button = document.getElementById("greetBtn");
+  themeToggleBtn?.addEventListener("click", () => {
+    document.body.classList.toggle("theme-dark");
+    const themeValue = document.body.classList.contains("theme-dark")
+      ? "dark"
+      : "light";
+    localStorage.setItem("theme", themeValue);
+  });
 
-button.addEventListener("click", function () {
-    alert("Hello! Thanks for visiting my website!");
-});
+  greetBtn?.addEventListener("click", () => {
+    alert("Hello! Thanks for visiting my website.");
+  });
 
-// Get elements
-const form = document.getElementById("contactForm");
-const messagesList = document.getElementById("messagesList");
-
-
-// Function to add a message
-function addMessage(messageText) {
-
+  function addMessage(messageText) {
     const li = document.createElement("li");
+    li.className = "message-item";
 
     const messageSpan = document.createElement("span");
+    messageSpan.className = "message-text";
     messageSpan.textContent = messageText;
 
-    // 👍 LIKE BUTTON
     const likeBtn = document.createElement("button");
-    likeBtn.textContent = "👍 Like";
+    likeBtn.className = "message-action";
+    likeBtn.type = "button";
+    likeBtn.textContent = "Like (0)";
 
     let likeCount = 0;
-
-    likeBtn.addEventListener("click", function () {
-        likeCount++;
-        likeBtn.textContent = `👍 Like (${likeCount})`;
+    likeBtn.addEventListener("click", () => {
+      likeCount += 1;
+      likeBtn.textContent = `Like (${likeCount})`;
     });
 
-    // DELETE BUTTON
     const deleteBtn = document.createElement("button");
+    deleteBtn.className = "message-action";
+    deleteBtn.type = "button";
     deleteBtn.textContent = "Delete";
-
-    deleteBtn.addEventListener("click", function () {
-        li.remove();
+    deleteBtn.addEventListener("click", () => {
+      li.remove();
     });
 
-    // Add everything to the message
     li.appendChild(messageSpan);
     li.appendChild(likeBtn);
     li.appendChild(deleteBtn);
+    messagesList?.appendChild(li);
+  }
 
-    messagesList.appendChild(li);
-}
-
-
-// Form submission
-form.addEventListener("submit", function(event) {
-
+  form?.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const name = document.getElementById("name").value;
-    const message = document.getElementById("message").value;
+    const nameInput = document.getElementById("name");
+    const messageInput = document.getElementById("message");
 
-    const fullMessage = `${name}: ${message}`;
+    const name = nameInput?.value.trim() || "Anonymous";
+    const message = messageInput?.value.trim() || "";
 
-    addMessage(fullMessage);
+    if (!message) {
+      return;
+    }
 
+    addMessage(`${name}: ${message}`);
     form.reset();
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add("show");
+          }, index * 90);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 },
+  );
+
+  revealSections.forEach((section) => observer.observe(section));
 });

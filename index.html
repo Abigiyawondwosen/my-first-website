@@ -1,48 +1,122 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Abig's First Website</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <button id="darkModeBtn">Toggle Dark Mode</button>
-</head>
-<script src="script.js"></script>
-<body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abigiya | Portfolio</title>
+    <meta
+      name="description"
+      content="Abigiya's professional portfolio website."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Source+Serif+4:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="container nav">
+        <a href="#top" class="brand">ABIGIYA</a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#hobbies">Hobbies</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <button
+          id="themeToggleBtn"
+          class="btn btn-secondary"
+          type="button"
+          aria-label="Toggle theme"
+        >
+          Theme
+        </button>
+      </nav>
+    </header>
 
-<section>
-<h1>Hello, I'm Abigiya</h1>
-<p>I am a software engineering student.</p>
-<img src="6.jpg" width="200">
-</section>
+    <main id="top">
+      <section id="about" class="hero section reveal">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow">Software Engineering Student</p>
+            <h1>Hello, I'm Abigiya</h1>
+            <p class="lead">
+              I am focused on building useful digital products, growing my
+              programming skills, and creating technology that helps people.
+            </p>
+            <button id="greetBtn" class="btn" type="button">Say Hello</button>
+          </div>
+          <figure class="profile-wrap">
+            <img
+              src="6.jpg"
+              alt="Portrait of Abigiya"
+              width="260"
+              height="260"
+            />
+          </figure>
+        </div>
+      </section>
 
-<section>
-<h2>My Hobbies are</h2>
-<ul>
-  <li>1. Reading books</li>
-  <li>2. Learning programming</li>
-  <li>3. Helping people</li>
-</ul>
-</section>
-<section>
-  <h2>Contact Me</h2>
-  <p>Email: <a href="mailto:abiguwend@gmail.com">abiguwend@gmail.com</a></p>
-  <p>Phone: <a href="tel:+251954596261">+251954596261</a></p>
-  <p>Address: Addis Ababa, Ethiopia</p>
-  <form id="contactForm">
-  <label for="name">Your Name:</label><br>
-  <input type="text" id="name" required><br><br>
+      <section id="hobbies" class="section reveal">
+        <div class="container card">
+          <h2>My Hobbies</h2>
+          <ul class="hobby-list">
+            <li>Reading books</li>
+            <li>Learning programming</li>
+            <li>Helping people</li>
+          </ul>
+        </div>
+      </section>
 
-  <label for="message">Message:</label><br>
-  <textarea id="message" required></textarea><br><br>
+      <section id="contact" class="section reveal">
+        <div class="container contact-grid">
+          <article class="card">
+            <h2>Contact Me</h2>
+            <p>
+              <strong>Email:</strong>
+              <a href="mailto:abiguwend@gmail.com">abiguwend@gmail.com</a>
+            </p>
+            <p>
+              <strong>Phone:</strong>
+              <a href="tel:+251954596261">+251954596261</a>
+            </p>
+            <p><strong>Address:</strong> Addis Ababa, Ethiopia</p>
+          </article>
 
-  <button type="submit">Send</button>
- <div id="messagesContainer">
-  <h3>Messages:</h3>
-  <ul id="messagesList"></ul>
-</div>
-</form>
-</section>
-<section>
-  <button id="greetBtn">Say Hello</button>
-</section>
-</body>
+          <article class="card">
+            <h2>Leave a Message</h2>
+            <form id="contactForm" novalidate>
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" required />
+
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                required
+              ></textarea>
+
+              <button class="btn" type="submit">Send Message</button>
+            </form>
+
+            <div id="messagesContainer">
+              <h3>Messages</h3>
+              <ul id="messagesList"></ul>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2026 Abigiya. Crafted with care.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
 </html>
